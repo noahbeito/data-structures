@@ -2,6 +2,7 @@ var Stack = function() {
   // Hey! Rewrite in the new style. Your code will wind up looking very similar,
   // but try not not reference your old code in writing the new style.
   var instance = {
+    count: 0,
     push: stackMethods.push,
     pop: stackMethods.pop,
     size: stackMethods.size,
@@ -15,21 +16,21 @@ var storage = {};
 var count = 0;
 
 stackMethods.push = function(value) {
-  count++;
-  storage[count] = value;
+  this.count++;
+  storage[this.count] = value;
   //  console.log('incrementCount: ', count);
 };
 
 stackMethods.pop = function() {
-  if (count === 0) {
+  if (this.count === 0) {
     return undefined;
   }
 
-  if (count > 0) {
-    var poppedValue = storage[count];
-    delete storage[count];
+  if (this.count > 0) {
+    var poppedValue = storage[this.count];
+    delete storage[this.count];
     // console.log('decrementCount: ', count);
-    count--;
+    this.count--;
     return poppedValue;
   }
 
@@ -37,7 +38,7 @@ stackMethods.pop = function() {
 
 stackMethods.size = function() {
   // console.log('sizeCount', count);
-  return count;
+  return this.count;
 };
 
 
